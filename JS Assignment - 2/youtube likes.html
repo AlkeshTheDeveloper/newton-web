@@ -1,0 +1,61 @@
+
+<!----html-->
+
+<h3 id="counter">0</h3>
+
+<input type="button" id="increment" value="Like" onclick="increment()" />
+<input type="button" id="decrement" value="Disike" onclick="decrement()"/>
+
+
+<!-----js------------------------->
+
+let count=0;
+
+function increment() {
+count++;
+document.getElementById("counter").innerHTML = count;
+
+}
+
+function decrement() {
+if (count>0)
+document.getElementById("counter").innerHTML = --count;
+}
+
+
+<!----- css is  optional-->
+#counter{
+border: 2px solid green;
+width:100px;
+height:50px;
+text-align: center;
+padding-top: 30px;
+}
+
+#increment{
+background-color:blue;
+color: white;
+padding:15px 30px;
+margin:0px 10px;
+border-radius: 20px;
+border: none;
+}
+
+#decrement{
+background-color: red;
+color: white;
+padding:15px 30px;
+margin:0px 10px;
+border-radius: 20px;
+border: none;
+}
+
+
+#increment:hover{
+background-color: green;
+}
+
+#decrement:hover{
+background-color: orange;
+}
+
