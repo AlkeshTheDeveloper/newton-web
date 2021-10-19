@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <title>Document</title>
+    <style>
+        #container {
+        display:flex;
+        }
+        #reset{
+        display:none;
+        }
+        #btn {
+        display:none;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Please click on the identical tiles to verify that you are not a robot</h3>
+    <div id="container"></div>
+    <button id="reset">Reset</button>
+    <button id="btn">Verify</button>
+    <script>
+        var count = 0;
+
+        let randarr = [1, 2, 3, 4, 5];
+        let rand = Math.floor(Math.random() * 5) + 1;
+        randarr.push(rand);
+        shuffle(randarr);
+
+        function shuffle(randarr) {
+            randarr.sort(() => 0.5 - Math.random());
+        }
+
+        const imageContainer = document.getElementById("container");
+        for (let i = 1; i <= 6; i++) {
+            let currImage = document.createElement("img");
+            currImage.src = `${randarr[i-1]}.jpg`;
+            currImage.setAttribute("data-ns-test", `img${randarr[i-1]}`);
+            currImage.setAttribute("class", "imageclass");
+            imageContainer.append(currImage);
+        }
+        let imagearr = document.getElementsByClassName("imageclass");
+        var
+            checkarr = []
+        let resetBtn = document.getElementById("reset");
+        let verifyBtn = document.getElementById("btn");
+        resetBtn.addEventListener("click", reset);
+
+        function reset() {
+            count = 0;
+            randarr = [1, 2, 3, 4, 5];
+            rand = Math.floor(Math.random() * 5) + 1;
+            randarr.push(rand);
+            shuffle(randarr);
+            for (let i = 1; i <= 6; i++) {
+                imagearr[i - 1].src = `${randarr[i-1]}.jpg`;
+                imagearr[i - 1].setAttribute("data-ns-test", `img${randarr[i-1]}`);
+            }
+            bool = [];
+            checkarr = []
+             document.getElementById("para").innerHTML = "";
+            resetBtn.style.display = "none";
+        }
+        console.log(randarr);
+        var bool = []
+        for (let i = 0; i < imagearr.length; i++) {
+            imagearr[i].addEventListener("click", () => {
+                if (!bool[i]) {
+                    count++;
+                    countcheck();
+                    checkarr.push(imagearr[i].getAttribute("data-ns-test"));
+                    bool[i] = true;
+
+                }
+            });
+        }
+
+        function countcheck() {
+            if (count >= 1) {
+                resetBtn.style.display = "block";
+            }
+            if (count == 2) {
+                verifyBtn.style.display = "block";
+            } else verifyBtn.style.display = "none";
+        }
+        let p = document.createElement("p");
+        p.id = "para";
+        document.querySelector("body").append(p);
+        verifyBtn.addEventListener("click", () => {
+            if (checkarr[0] === checkarr[1]) {
+                p.innerHTML = "You are a human. Congratulations!";
+
+            } else {
+                p.innerHTML = "We can't verify you as a human. You selected the non-identical tiles.";
+
+            }
+            verifyBtn.style.display = "none";
+
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<style>
+
+    #div1, #div2, #div3, #div4, #div5, #div6{
+    float: left;
+    width: 83px;
+    height: 85px;
+    margin: 20px;
+    padding: 5px;
+    border: 1px solid black;
+    }
+</style>
+
+
+<div id="div1" ondragover="overContainer(event)" ondrop="allowDrop(event)">
+
+    <img width="83px" height="83px" id="drag1" ondragstart="drag(event)" draggable="true" src="images/1.jpg">
+</div>
+
+<div id="div2" ondragover="overContainer(event)" ondrop="allowDrop(event)">
+    <img width="83px" height="83px" id="drag2" ondragstart="drag(event)" draggable="true" src="images/2.jpg">
+</div>
+
+<div id="div3" ondragover="overContainer(event)" ondrop="allowDrop(event)">
+    <img width="83px" height="83px" id="drag3" ondragstart="drag(event)" draggable="true" src="images/3.jpg"> </div>
+
+<div id="div4" ondragover="overContainer(event)" ondrop="allowDrop(event)">
+    <img width="83px" height="83px" id="drag4" ondragstart="drag(event)" draggable="true" src="images/4.jpg"> </div>
+
+<div id="div5" ondragover="overContainer(event)" ondrop="allowDrop(event)">
+    <img width="83px" height="83px" id="drag5" ondragstart="drag(event)" draggable="true" src="images/5.jpg"> </div>
+
+<div id="div6" ondragover="overContainer(event)" ondrop="allowDrop(event)">
+    <img width="83px" height="83px" id="drag6" ondragstart="drag(event)" draggable="true" src="images/2.jpg"> </div>
+
+
+
+    <script>
+        function drag(e){
+        e.dataTransfer.setData('pairid', e.target.id);
+        e.dataTransfer.setData('dragid', e.target.parentElement.id);
+        }
+
+        function overContainer(e){
+        e.preventDefault();
+        }
+
+        function allowDrop(e){
+
+        e.preventDefault();
+        var parent = e.dataTransfer.getData('pairid');
+        var child = e.dataTransfer.getData('dragid');
+
+        if(e.target.draggable){
+
+        e.target.parentElement.appendChild(document.getElementById(parent));
+        document.getElementById(child).appendChild(e.target);
+
+        }
+        }
+    </script>
