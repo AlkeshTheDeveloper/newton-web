@@ -1,0 +1,3 @@
+class                   fuctional component
+1) have to write inside    1) have to return from function 
+  the render method

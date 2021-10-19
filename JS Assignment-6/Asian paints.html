@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+        display: grid;
+        grid-template-columns: repeat(5,auto);
+        width: 12rem;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <input type="number" placeholder="enter no between 1 to 9" id="wall_id">
+    <input type="text" placeholder="enter name of color" id='wall_color'>
+    <button id="apply" onclick="addColor()">Apply</button>
+    <br>
+    <button id="reset" onclick="reset()">Reset</button>
+    <div id="container"></div>
+<script>
+    function createWall(){
+    const container= document.getElementById('container');
+    for( let i=1;i<=9;i++){ const wall=document.createElement('div'); wall.setAttribute('id',i);
+        wall.setAttribute('value',1); var wallDesign="height:4rem; width:3rem;margin:2px; border:2px solid black;"
+        wall.style.cssText=wallDesign; container.appendChild(wall); } } function addColor(){ const
+        wallNo=document.getElementById('wall_id').value; for( var i=1;i<=9;i++){ if(i==wallNo){ const
+        wall=document.getElementById(wallNo); const color=document.getElementById('wall_color').value;
+        wall.style.backgroundColor=color; } else{ document.getElementById(i).style.backgroundColor='transparent' ; } } }
+        function reset(){ for(let i=1;i<=9;i++){ document.getElementById(i).style.backgroundColor='transparent' ; } }
+</script>
+</body>
+</html>
